@@ -1,4 +1,6 @@
-# boilerplate-fastapi-ocr
+# Ocrer
+
+![Ocrer — OCR document processing](doc/ocrer-banner.png)
 
 An **OCR** API powered by [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR), built on a
 FastAPI + React boilerplate (cookie‑JWT auth, CQRS, outbox/inbox, Postgres, and an
@@ -51,6 +53,7 @@ extension points.
 - [OCR configuration (`.env`)](#ocr-configuration-env)
 - [Development](#development) — [code quality](#code-quality-backend) ·
   [architecture](#ocr-architecture) · [readiness](#readiness)
+- [Technical documentation](doc/README.md) — architecture, backend, frontend, operations
 - [Observability](#observability)
 - [Security](#security)
 - [Known limitations](#known-limitations)
@@ -78,8 +81,8 @@ boilerplate-fastapi-ocr/
 containers.
 
 ```bash
-git clone https://github.com/venturaproject/boilerplate-fastapi-ocr.git
-cd boilerplate-fastapi-ocr
+git clone https://github.com/venturaproject/ocrer.git
+cd ocrer
 
 cp .env.example .env          # set SECRET_KEY (≥32 chars), credentials, ports…
 make build
