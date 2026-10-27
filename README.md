@@ -1,5 +1,3 @@
-# Ocrer
-
 ![Ocrer — OCR document processing](doc/ocrer-banner.png)
 
 An **OCR** API powered by [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR), built on a
