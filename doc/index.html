@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080e0b">
-  <meta name="description" content="Arquitectura y documentación técnica de Ocrer: API OCR, CQRS, eventos y despliegue.">
+  <meta name="description" content="Ocrer technical documentation: OCR API architecture, CQRS, event processing, and deployment.">
   <title>Ocrer — arquitectura y documentación</title>
   <style>
     :root{color-scheme:dark;--bg:#080e0b;--panel:#101a14;--line:#2a4932;--text:#eef4ed;--muted:#91a396;--accent:#b7ef45;--accent2:#8ccf42;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;--sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -18,9 +18,9 @@
   </style>
 </head>
 <body>
-  <header><nav class="wrap nav" aria-label="Navegación principal"><a class="brand" href="#inicio"><span class="mark">O</span>Ocrer</a><div class="links"><a href="#arquitectura">Arquitectura</a><a href="#docs">Documentación</a><button id="theme" type="button">☼ Claro</button><a class="github" href="https://github.com/venturaproject/ocrer">GitHub ↗</a></div></nav></header>
-  <main id="inicio">
-    <section class="hero"><div class="wrap hero-grid"><div><div class="kicker">OCR · API · plataforma documental</div><h1>Documentos<br>en <span>movimiento.</span></h1><p class="lead">Ocrer procesa imágenes y PDFs mediante API, en modo síncrono o con trabajos asíncronos. Esta documentación describe su arquitectura real, sus patrones y los límites actuales.</p><div class="actions"><a class="button primary" href="https://github.com/venturaproject/ocrer#quick-start-dev">Empezar ↗</a><a class="button secondary" href="#docs">Ver documentación</a></div></div><div class="diagram" aria-label="Diagrama resumido de arquitectura"><strong>CLIENTES</strong> ──► NGINX ──► FASTAPI
+  <header><nav class="wrap nav" aria-label="Main navigation"><a class="brand" href="#home"><span class="mark">O</span>Ocrer</a><div class="links"><a href="#architecture">Architecture</a><a href="#docs">Documentation</a><button id="theme" type="button">☼ Light</button><a class="github" href="https://github.com/venturaproject/ocrer">GitHub ↗</a></div></nav></header>
+  <main id="home">
+    <section class="hero"><div class="wrap hero-grid"><div><div class="kicker">OCR · API · document platform</div><h1>Documents<br>in <span>motion.</span></h1><p class="lead">Ocrer processes images and PDFs through an API, synchronously or as asynchronous jobs. This documentation describes the architecture as it exists today, its patterns, and their current boundaries.</p><div class="actions"><a class="button primary" href="https://github.com/venturaproject/ocrer#quick-start-dev">Get started ↗</a><a class="button secondary" href="#docs">Explore the docs</a></div></div><div class="diagram" aria-label="Simplified architecture diagram"><strong>CLIENTS</strong> ──► NGINX ──► FASTAPI
                               │              │
                               │       ┌──────┴─────────┐
                               │       ▼                ▼
@@ -31,29 +31,29 @@
                          React SPA
 
        <strong>Python</strong> · <strong>FastAPI</strong> · <strong>PostgreSQL</strong> · <strong>React</strong></div></div></section>
-    <div class="strip"><div class="wrap"><span><b>Monolito modular</b> · despliegue simple</span><span><b>CQRS</b> · adopción selectiva</span><span><b>Outbox / Inbox</b> · resiliencia</span><span><b>Self-hosted</b> · control de datos</span></div></div>
-    <section class="content" id="arquitectura"><div class="wrap"><div class="head"><div><div class="kicker">Diseño con límites claros</div><h2>Patrones, sin etiquetas vacías.</h2></div><p class="note">DDD, Clean Architecture y hexagonal son lentes útiles; la documentación separa lo que existe hoy de lo que sería una evolución futura.</p></div><div class="grid">
-      <article class="card"><div class="number">01 / DOMAIN</div><h3>DDD pragmático</h3><p>Módulos organizados por capacidades, handlers y eventos donde aportan valor. El modelo ORM todavía participa en varias áreas.</p></article>
-      <article class="card"><div class="number">02 / APPLICATION</div><h3>CQRS selectivo</h3><p>Command y query buses separan algunos casos de uso; no todos los endpoints pasan por ellos ni es event sourcing.</p></article>
-      <article class="card"><div class="number">03 / ADAPTERS</div><h3>Hexagonal parcial</h3><p>Routers, servicios, repositorios y motor OCR ofrecen fronteras prácticas; no todos los puertos están formalizados.</p></article>
-      <article class="card"><div class="number">04 / RELIABILITY</div><h3>Outbox e Inbox</h3><p>Eventos durables, consumo idempotente y reintentos con backoff sin depender de un broker externo.</p></article>
-      <article class="card"><div class="number">05 / OCR PIPELINE</div><h3>Procesamiento adaptable</h3><p>Texto PDF primero, OCR cuando hace falta; motores PaddleOCR, Tesseract o stub de pruebas.</p></article>
-      <article class="card"><div class="number">06 / OPERATIONS</div><h3>Operable por contenedores</h3><p>FastAPI, workers, PostgreSQL, SPA y Nginx; con métricas, logs estructurados y controles de seguridad.</p></article>
+    <div class="strip"><div class="wrap"><span><b>Modular monolith</b> · simple deployment</span><span><b>CQRS</b> · selective adoption</span><span><b>Outbox / Inbox</b> · resilient delivery</span><span><b>Self-hosted</b> · data control</span></div></div>
+    <section class="content" id="architecture"><div class="wrap"><div class="head"><div><div class="kicker">Clear boundaries, pragmatic design</div><h2>Patterns, not empty labels.</h2></div><p class="note">DDD, Clean Architecture, and Hexagonal Architecture are useful lenses. The docs distinguish what exists today from possible future evolution.</p></div><div class="grid">
+      <article class="card"><div class="number">01 / DOMAIN</div><h3>Pragmatic DDD</h3><p>Capability-oriented modules, handlers, and domain events where useful. ORM models still participate in several areas.</p></article>
+      <article class="card"><div class="number">02 / APPLICATION</div><h3>Selective CQRS</h3><p>Command and query buses separate some use cases; not every endpoint uses them, and this is not event sourcing.</p></article>
+      <article class="card"><div class="number">03 / ADAPTERS</div><h3>Partial Hexagonal Architecture</h3><p>Routers, services, repositories, and the OCR engine provide practical boundaries; not all ports are formalized.</p></article>
+      <article class="card"><div class="number">04 / RELIABILITY</div><h3>Outbox and Inbox</h3><p>Durable events, idempotent consumption, and backoff retries without requiring an external broker.</p></article>
+      <article class="card"><div class="number">05 / OCR PIPELINE</div><h3>Flexible processing</h3><p>Read PDF text first and run OCR when needed; supports PaddleOCR, Tesseract, or a test stub.</p></article>
+      <article class="card"><div class="number">06 / OPERATIONS</div><h3>Container-ready</h3><p>FastAPI, workers, PostgreSQL, SPA, and Nginx, with metrics, structured logs, and security controls.</p></article>
     </div></div></section>
-    <section class="content" id="docs" style="padding-top:0"><div class="wrap"><div class="head"><div><div class="kicker">Guías técnicas</div><h2>Explora el sistema.</h2></div><p class="note">Documentación mantenida junto al código. Para colaborar, abre los Markdown en el repositorio.</p></div><div class="grid">
-      <article class="card"><div class="number">DOC / 01</div><h3><a href="https://github.com/venturaproject/ocrer/blob/main/doc/architecture.md">Arquitectura</a></h3><p>Componentes, dependencias, flujo OCR, CQRS, DDD y decisiones de diseño.</p></article>
-      <article class="card"><div class="number">DOC / 02</div><h3><a href="https://github.com/venturaproject/ocrer/blob/main/doc/backend.md">Backend</a></h3><p>FastAPI, servicios, repositorios, persistencia, eventos y workers.</p></article>
-      <article class="card"><div class="number">DOC / 03</div><h3><a href="https://github.com/venturaproject/ocrer/blob/main/doc/frontend.md">Frontend</a></h3><p>React, rutas, acceso a API, sesión y responsabilidades de autorización.</p></article>
-      <article class="card"><div class="number">DOC / 04</div><h3><a href="https://github.com/venturaproject/ocrer/blob/main/doc/operations.md">Operación y seguridad</a></h3><p>Compose, configuración, secretos, límites de confianza y observabilidad.</p></article>
-      <article class="card"><div class="number">DOC / 05</div><h3><a href="https://github.com/venturaproject/ocrer#readme">Guía principal</a></h3><p>Instalación, endpoints, autenticación, OCR y configuración.</p></article>
-      <article class="card"><div class="number">SOURCE</div><h3><a href="https://github.com/venturaproject/ocrer/tree/main/doc">Código de esta documentación ↗</a></h3><p>Los documentos se versionan junto con la implementación y se publican con GitHub Actions.</p></article>
+    <section class="content" id="docs" style="padding-top:0"><div class="wrap"><div class="head"><div><div class="kicker">Technical guides</div><h2>Explore the system.</h2></div><p class="note">Documentation lives alongside the code. Open the Markdown files in the repository to read or contribute.</p></div><div class="grid">
+      <article class="card"><div class="number">DOC / 01</div><h3><a href="https://github.com/venturaproject/ocrer/blob/main/doc/architecture.md">Architecture</a></h3><p>Components, dependencies, OCR flow, CQRS, DDD, and design decisions.</p></article>
+      <article class="card"><div class="number">DOC / 02</div><h3><a href="https://github.com/venturaproject/ocrer/blob/main/doc/backend.md">Backend</a></h3><p>FastAPI, services, repositories, persistence, events, and workers.</p></article>
+      <article class="card"><div class="number">DOC / 03</div><h3><a href="https://github.com/venturaproject/ocrer/blob/main/doc/frontend.md">Frontend</a></h3><p>React, routing, API access, sessions, and authorization responsibilities.</p></article>
+      <article class="card"><div class="number">DOC / 04</div><h3><a href="https://github.com/venturaproject/ocrer/blob/main/doc/operations.md">Operations and security</a></h3><p>Compose, configuration, secrets, trust boundaries, and observability.</p></article>
+      <article class="card"><div class="number">DOC / 05</div><h3><a href="https://github.com/venturaproject/ocrer#readme">Main README</a></h3><p>Installation, endpoints, authentication, OCR, and configuration.</p></article>
+      <article class="card"><div class="number">SOURCE</div><h3><a href="https://github.com/venturaproject/ocrer/tree/main/doc">Documentation source ↗</a></h3><p>Docs are versioned with the implementation and published through GitHub Actions.</p></article>
     </div></div></section>
-    <section class="content" style="padding-top:0"><div class="wrap"><div class="callout"><h2>Una arquitectura que evoluciona.</h2><p>Los documentos describen el estado actual, no una promesa de pureza arquitectónica. Cuando cambie un límite o flujo importante, actualiza el código y la documentación en el mismo cambio. <a href="https://github.com/venturaproject/ocrer">Contribuir en GitHub ↗</a></p></div></div></section>
+    <section class="content" style="padding-top:0"><div class="wrap"><div class="callout"><h2>An architecture that evolves.</h2><p>These docs describe the current implementation, not a promise of architectural purity. When an important boundary or flow changes, update the code and docs together. <a href="https://github.com/venturaproject/ocrer">Contribute on GitHub ↗</a></p></div></div></section>
   </main>
-  <footer><div class="wrap"><span>Ocrer · documentación técnica</span><span><a href="https://github.com/venturaproject/ocrer">GitHub ↗</a> · Python · FastAPI · React</span></div></footer>
+  <footer><div class="wrap"><span>Ocrer · technical documentation</span><span><a href="https://github.com/venturaproject/ocrer">GitHub ↗</a> · Python · FastAPI · React</span></div></footer>
   <script>
     const button=document.getElementById('theme'),key='ocrer-doc-theme';
-    function setTheme(value){document.documentElement.dataset.theme=value;button.textContent=value==='light'?'☾ Oscuro':'☼ Claro';}
+    function setTheme(value){document.documentElement.dataset.theme=value;button.textContent=value==='light'?'☾ Dark':'☼ Light';}
     let saved=null;try{saved=localStorage.getItem(key)}catch{}setTheme(saved||'dark');
     button.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';setTheme(next);try{localStorage.setItem(key,next)}catch{}});
   </script>
